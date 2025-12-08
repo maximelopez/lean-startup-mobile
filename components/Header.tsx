@@ -1,7 +1,11 @@
 import React from 'react';
 import { View, Image, Pressable } from 'react-native';
 
-export default function Header({ onAvatarPress }) {
+interface HeaderProps {
+  onAvatarPress: () => void;
+}
+
+export default function Header({ onAvatarPress }: HeaderProps) {
   return (
     <View
       style={{
