@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAuthStore } from '../store/useAuthStore';
-import { View, Text, Button, TextInput } from 'react-native';
+import { View, Text, Button, TextInput, TouchableOpacity } from 'react-native';
 import Constants from "expo-constants";
 
 type Props = {
@@ -50,8 +50,8 @@ export default function Login({ navigation }: Props) {
   };
 
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20 }}>
-      <Text style={{ fontSize: 24, marginBottom: 20 }}>Connexion</Text>
+    <View className="flex-1 justify-center items-center p-5 bg-white">
+      <Text className="text-2xl font-bold mb-5 text-blue-600">Connexion</Text>
       
       <TextInput
         placeholder="Email"
@@ -60,22 +60,26 @@ export default function Login({ navigation }: Props) {
         keyboardType="email-address"
         autoCapitalize="none"
         autoCorrect={false}
-        style={{ width: '100%', borderWidth: 1, borderColor: '#ccc', padding: 10, marginBottom: 10 }}
+        className="w-full border border-gray-300 rounded-md px-4 py-3 mb-3"
       />
       <TextInput
         placeholder="Mot de passe"
         value={password}
         onChangeText={value => setPassword(value)}
+        autoCapitalize="none"
         secureTextEntry
-        style={{ width: '100%', borderWidth: 1, borderColor: '#ccc', padding: 10, marginBottom: 20 }}
+        className="w-full border border-gray-300 rounded-md px-4 py-3 mb-4"
       />
 
-      {errorMessage && <Text style={{ color: 'red' }}>{errorMessage}</Text>}
-      <View style={{ height: 10 }} />
+      {errorMessage && <Text className="text-red-500 mb-3">{errorMessage}</Text>}
+      
+      <TouchableOpacity className="w-full bg-blue-600 rounded-md py-3 mb-3" onPress={handleLogin}>
+        <Text className="text-white text-center font-semibold">Se connecter</Text>
+      </TouchableOpacity>
 
-      <Button title="Se connecter" onPress={handleLogin} />
-      <View style={{ height: 10 }} />
-      <Text onPress={() => navigation.navigate('Signup')} >Pas encore de compte ? S'inscrire</Text>
+      <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
+        <Text className="text-blue-600 mt-2">Pas encore de compte ? S'inscrire</Text>
+      </TouchableOpacity>
     </View>
   );
 }
