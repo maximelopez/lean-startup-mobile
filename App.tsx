@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -8,6 +7,7 @@ import Login from './screens/Login';
 import Signup from './screens/Signup';
 import Home from './screens/Home';
 import Profile from './screens/Profile';
+import { useAuthStore } from './store/useAuthStore';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -34,19 +34,15 @@ function AppTabs() {
 }
 
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const isLoggedIn = useAuthStore(state => state.isLoggedIn)
 
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {!isLoggedIn ? (
           <>
-            <Stack.Screen name="Login">
-              {props => <Login {...props} setIsLoggedIn={setIsLoggedIn} />}
-            </Stack.Screen>
-            <Stack.Screen name="Signup">
-              {props => <Signup {...props} setIsLoggedIn={setIsLoggedIn} />}
-            </Stack.Screen>
+            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="Signup" component={Signup} />
           </>
         ) : (
           <Stack.Screen name="AppTabs" component={AppTabs} />

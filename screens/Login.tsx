@@ -1,10 +1,10 @@
 import { useState } from 'react';
+import { useAuthStore } from '../store/useAuthStore';
 import { View, Text, Button, TextInput } from 'react-native';
 import Constants from "expo-constants";
 
 type Props = {
   navigation: any;
-  setIsLoggedIn: (value: boolean) => void;
 };
 
 const API_URL = Constants.expoConfig?.extra?.API_URL;
@@ -13,12 +13,14 @@ if (!API_URL) {
   console.warn("⚠️ API_URL is missing in app.config.js or .env");
 }
 
-export default function Login({ navigation, setIsLoggedIn }: Props) {
+export default function Login({ navigation }: Props) {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const login = async (email: string, password: string) => {
+  const { login } = useAuthStore();
+
+  const handleLogin = async () => {
     if (! email || !password) {
       setErrorMessage('Veuillez remplir tous les champs.');
       return;
@@ -35,14 +37,15 @@ export default function Login({ navigation, setIsLoggedIn }: Props) {
 
       const data = await response.json();
 
-      if (response.ok) {
-        setIsLoggedIn(true);
+      if (response.ok && data.user && data.token) {
+        login(data.user, data.token);
       } else {
         setErrorMessage(data.error || data.message || 'Identifiants incorrects.');
       }
 
     } catch (error: any) {
       console.error('Erreur login :', error.message);
+      setErrorMessage('Une erreur est survenue. Veuillez réessayer.');
     }
   };
 
@@ -70,7 +73,7 @@ export default function Login({ navigation, setIsLoggedIn }: Props) {
       {errorMessage && <Text style={{ color: 'red' }}>{errorMessage}</Text>}
       <View style={{ height: 10 }} />
 
-      <Button title="Se connecter" onPress={() => login(email, password)} />
+      <Button title="Se connecter" onPress={handleLogin} />
       <View style={{ height: 10 }} />
       <Text onPress={() => navigation.navigate('Signup')} >Pas encore de compte ? S'inscrire</Text>
     </View>
