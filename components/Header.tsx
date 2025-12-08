@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, Pressable } from 'react-native';
+import { View, Text, Image, Pressable } from 'react-native';
 
 interface HeaderProps {
   onAvatarPress: () => void;
@@ -17,14 +17,13 @@ export default function Header({ onAvatarPress }: HeaderProps) {
         backgroundColor: '#fff'
       }}
     >
-      <Image
-        source={require('../assets/logo.png')}
-        style={{ width: 120, height: 40, resizeMode: 'contain' }}
-      />
+      <Text style={{ fontSize: 20, fontWeight: 'bold' }}>
+        MonApp
+      </Text>
 
       <Pressable onPress={onAvatarPress}>
         <Image
-          source={{ uri: 'https://example.com/avatar.jpg' }}
+          source={{ uri: 'https://placekitten.com/200/200' }}
           style={{
             width: 40,
             height: 40,
