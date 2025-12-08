@@ -20,17 +20,6 @@ export default function Header({ onAvatarPress }: HeaderProps) {
       <Text style={{ fontSize: 20, fontWeight: 'bold' }}>
         MonApp
       </Text>
-
-      <Pressable onPress={onAvatarPress}>
-        <Image
-          source={{ uri: 'https://placekitten.com/200/200' }}
-          style={{
-            width: 40,
-            height: 40,
-            borderRadius: 20
-          }}
-        />
-      </Pressable>
     </View>
   );
 }
