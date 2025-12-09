@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useAuthStore } from '../store/useAuthStore';
-import { View, Text, TextInput, TouchableOpacity, ActivityIndicator  } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
+import Button from '../components/Button';
+import Input from '../components/Input';
 import Constants from "expo-constants";
 
 type Props = {
@@ -21,7 +23,7 @@ export default function Signup({ navigation }: Props) {
   const { login } = useAuthStore();
 
   const handleSignup = async () => {
-    if (!name || ! email || !password) {
+    if (!name || !email || !password) {
       setErrorMessage('Veuillez remplir tous les champs.');
       return;
     }
@@ -60,50 +62,51 @@ export default function Signup({ navigation }: Props) {
   };
 
   return (
-    <View className="flex-1 justify-center items-center p-5 bg-white">
-      <Text className="text-2xl font-bold mb-5 text-blue-600">Inscription</Text>
-      
-      <TextInput
-        placeholder="Prénom"
-        value={name}
-        onChangeText={value => setName(value)}
-        className="w-full border border-gray-300 rounded-md px-4 py-3 mb-3"
-      />
-      <TextInput
-        placeholder="Email"
-        value={email}
-        onChangeText={value => setEmail(value)}
-        keyboardType="email-address"
-        autoCapitalize="none"
-        autoCorrect={false}
-        className="w-full border border-gray-300 rounded-md px-4 py-3 mb-3"
-      />
-      <TextInput
-        placeholder="Mot de passe"
-        value={password}
-        onChangeText={value => setPassword(value)}
-        autoCapitalize="none"
-        secureTextEntry
-        className="w-full border border-gray-300 rounded-md px-4 py-3 mb-4"
-      />
+    <View className="flex-1 bg-[#4A3983]">
 
-      {errorMessage && <Text className="text-red-500 mb-3">{errorMessage}</Text>}
+      <View className="flex-1 flex-row items-center justify-center">
+        <Text className="text-white text-center">Déjà inscrit ? </Text>
+        <TouchableOpacity
+          className='bg-[#C6B9EF] rounded-3xl'
+          onPress={() => navigation.navigate('Login')}
+          activeOpacity={0.8}
+        >
+          <Text className='px-4 py-2 text-white'>Connectez-vous</Text>
+        </TouchableOpacity>
+      </View>
 
-      <TouchableOpacity
-        disabled={loading}
-        className={`w-full rounded-md py-3 mb-3 ${loading ? 'bg-blue-300' : 'bg-blue-600'}`}
-        onPress={handleSignup}
-      >
-        {loading ? (
-          <ActivityIndicator color="white" />
-        ) : (
-          <Text className="text-white text-center font-semibold">S'inscrire</Text>
-        )}
-      </TouchableOpacity>
+      <View className="h-4/5 bg-white rounded-t-3xl p-5 items-center mt-auto">
+        <Text className="text-4xl font-bold mb-6 mt-6 text-black">Inscription</Text>
+        <Text className="text-gray-500 mb-9 text-center">Saisissez vos informations ci‑dessous</Text>
 
-      <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-        <Text className="text-blue-600 mt-2">Déjà inscrit ? Se connecter</Text>
-      </TouchableOpacity>
+        <Input
+          value={name}
+          onChangeText={setName}
+          placeholder="Prénom"
+        />
+
+        <Input
+          value={email}
+          onChangeText={setEmail}
+          placeholder="Adresse mail"
+          keyboardType="email-address"
+        />
+
+        <Input
+          value={password}
+          onChangeText={setPassword}
+          placeholder="Mot de passe"
+          secureTextEntry
+        />
+
+        {errorMessage && <Text className="text-red-500 mb-3">{errorMessage}</Text>}
+
+        <Button
+          title="S'inscrire"
+          onPress={handleSignup}
+          loading={loading}
+        />
+      </View>
     </View>
   );
 }
