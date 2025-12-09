@@ -18,7 +18,7 @@ export default function Button({
       disabled={isDisabled}
       onPress={onPress}
       activeOpacity={0.8}
-      className="w-full rounded-md overflow-hidden mb-3 h-16 rounded-3xl"
+      style={{ width: '100%', borderRadius: 24, overflow: 'hidden', height: 56, marginBottom: 12 }}
     >
       <LinearGradient
         colors={
@@ -28,7 +28,7 @@ export default function Button({
         }
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
-        className="flex-1 items-center justify-center"
+        style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
       >
         {loading ? (
           <ActivityIndicator color="white" />

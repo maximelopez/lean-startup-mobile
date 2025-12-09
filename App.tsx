@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -9,6 +10,7 @@ import Signup from './screens/Signup';
 import Home from './screens/Home';
 import Profile from './screens/Profile';
 import { useAuthStore } from './store/useAuthStore';
+import { View, ActivityIndicator } from 'react-native';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -35,7 +37,20 @@ function AppTabs() {
 }
 
 export default function App() {
-  const isLoggedIn = useAuthStore(state => state.isLoggedIn)
+  const { isLoggedIn, hydrated, loadAuthState } = useAuthStore();
+
+  useEffect(() => {
+    loadAuthState();
+  }, []);
+
+  // Tant que l'état n'est pas chargé, afficher un loader
+  if (!hydrated) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size="large" color="#4A3983" />
+      </View>
+    );
+  }
 
   return (
     <NavigationContainer>

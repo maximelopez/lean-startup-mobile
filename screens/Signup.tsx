@@ -75,7 +75,7 @@ export default function Signup({ navigation }: Props) {
         </TouchableOpacity>
       </View>
 
-      <View className="h-4/5 bg-white rounded-t-3xl p-5 items-center mt-auto">
+      <View className="h-4/5 bg-white rounded-t-[30px] p-5 items-center mt-auto">
         <Text className="text-4xl font-bold mb-6 mt-6 text-black">Inscription</Text>
         <Text className="text-gray-500 mb-9 text-center">Saisissez vos informations ci‑dessous</Text>
 
