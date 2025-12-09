@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAuthStore } from '../store/useAuthStore';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import Button from '../components/Button';
 import Input from '../components/Input';
 import Constants from "expo-constants";
