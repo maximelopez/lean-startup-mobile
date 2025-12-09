@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAuthStore } from '../store/useAuthStore';
-import { View, Text, Button, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ActivityIndicator  } from 'react-native';
 import Constants from "expo-constants";
 
 type Props = {
@@ -9,15 +9,14 @@ type Props = {
 
 const API_URL = Constants.expoConfig?.extra?.API_URL;
 
-if (!API_URL) {
-  console.warn("⚠️ API_URL is missing in app.config.js or .env");
-}
+if (!API_URL) console.warn("API_URL is missing in app.config.js or .env");
 
 export default function Signup({ navigation }: Props) {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const { login } = useAuthStore();
 
@@ -31,6 +30,9 @@ export default function Signup({ navigation }: Props) {
       setErrorMessage("Le mot de passe doit faire au moins 6 caractères.");
       return;
     }
+
+    setLoading(true);
+    setErrorMessage('');
 
     try {
       const response = await fetch(API_URL + 'users/signup', {
@@ -53,6 +55,8 @@ export default function Signup({ navigation }: Props) {
       console.error('Erreur signup :', error.message);
       setErrorMessage('Une erreur est survenue. Veuillez réessayer.');
     }
+
+    setLoading(false);
   };
 
   return (
@@ -86,10 +90,15 @@ export default function Signup({ navigation }: Props) {
       {errorMessage && <Text className="text-red-500 mb-3">{errorMessage}</Text>}
 
       <TouchableOpacity
-        className="w-full bg-blue-600 rounded-md py-3 mb-3"
+        disabled={loading}
+        className={`w-full rounded-md py-3 mb-3 ${loading ? 'bg-blue-300' : 'bg-blue-600'}`}
         onPress={handleSignup}
       >
-        <Text className="text-white text-center font-semibold">S'inscrire</Text>
+        {loading ? (
+          <ActivityIndicator color="white" />
+        ) : (
+          <Text className="text-white text-center font-semibold">S'inscrire</Text>
+        )}
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => navigation.navigate('Login')}>
