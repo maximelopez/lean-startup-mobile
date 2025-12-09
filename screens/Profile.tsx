@@ -1,64 +1,36 @@
-import React, { useState } from 'react';
-import { View, Text, Image, TextInput, Pressable } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from "react-native";
+import { useAuthStore } from '../store/useAuthStore';
 
 export default function Profile() {
-  const [name, setName] = useState("John Doe");
-  const [avatar, setAvatar] = useState("https://cdn-icons-png.flaticon.com/512/847/847969.png");
+  const user = useAuthStore(state => state.user);
+  const logout = useAuthStore(state => state.logout);
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', paddingTop: 60, backgroundColor: '#f5f5f5' }}>
-
-      {/* AVATAR */}
+    <View className="flex-1 items-center bg-white pt-16">
       <Image
-        source={{ uri: avatar }}
-        style={{
-          width: 140,
-          height: 140,
-          borderRadius: 70,
-          marginBottom: 20,
-          borderWidth: 4,
-          borderColor: '#007AFF'
-        }}
+        source={{ uri: "https://avatar.iran.liara.run/public/boy?seed=12" }}
+        className="w-32 h-32 rounded-full mb-5"
       />
-
-      {/* NOM */}
-      <View
-        style={{
-          width: '80%',
-          backgroundColor: '#fff',
-          padding: 15,
-          borderRadius: 12,
-          borderWidth: 1,
-          borderColor: '#ddd',
-          marginBottom: 20
-        }}
-      >
-        <Text style={{ fontSize: 14, color: '#777', marginBottom: 6 }}>
-          Nom complet
+       <Text className="text-2xl font-bold text-gray-900 mb-2">
+        {user ? user.name : ""}
+      </Text>
+      <Text className="text-gray-600 text-lg mb-4">
+        {user ? user.email : ""}
+      </Text>
+      <View className="px-4 py-2 rounded-full bg-blue-100 mt-2">
+        <Text className="text-blue-700 font-semibold">
+          {user ? user.isPremium ? "Premium" : "Compte Gratuit" : ""}
         </Text>
-
-        <TextInput
-          value={name}
-          onChangeText={setName}
-          style={{
-            fontSize: 18,
-            color: '#000'
-          }}
-        />
       </View>
 
-      {/* BOUTON */}
-      <Pressable
-        style={{
-          backgroundColor: '#007AFF',
-          paddingVertical: 14,
-          paddingHorizontal: 40,
-          borderRadius: 12
-        }}
+      <TouchableOpacity
+        onPress={() => logout()}
+        className="bg-red-500 px-6 py-3 rounded-xl mt-4"
       >
-        <Text style={{ fontSize: 18, color: '#fff' }}>Enregistrer</Text>
-      </Pressable>
-
+        <Text className="text-white font-semibold text-lg">
+          Se déconnecter
+        </Text>
+      </TouchableOpacity>
     </View>
-  );
+  )
 }
