@@ -1,13 +1,13 @@
 import { useState } from 'react';
+import { ActivityIndicator, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useAuthStore } from '../store/useAuthStore';
-import { View, Text, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
-import Constants from "expo-constants";
 
 type Props = {
   navigation: any;
 };
 
-const API_URL = Constants.expoConfig?.extra?.API_URL;
+//const API_URL = Constants.expoConfig?.extra?.API_URL;
+const API_URL = "https://lean-startup-backend.vercel.app/api/";
 
 if (!API_URL) console.warn("API_URL is missing in app.config.js or .env");
 
