@@ -1,6 +1,7 @@
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { View, Text, ScrollView, Image } from 'react-native';
 import ScoreCard from '@/components/ScoreCard';
+import DonutProgress from '../components/DonutProgress';
 import icon1 from '../assets/icons/dashboard-icon1.png';
 import icon2 from '../assets/icons/dashboard-icon2.png';
 import icon3 from '../assets/icons/dashboard-icon3.png';
@@ -17,6 +18,7 @@ export default function Score() {
                     <Text className='text-center text-gray-500 text-[12px]'>
                         Les scores sont calculés à partir de tes activités et ressentis. Tu peux les ajuster dans ton profil.
                     </Text>
+                    <DonutProgress score={78} progress={0.35} />
                 </View>
                 <View className="mx-6">
                     <Text className="text-center text-[32px] font-bold mt-4 mb-4">
@@ -35,7 +37,7 @@ export default function Score() {
                             <Text className='text-[12px]'>progression</Text>
                         </View>
                         <View className='bg-white border border-[#FFCF06] w-[120px] h-[120px] rounded-[15px] items-center justify-center'>
-                            <Image source={icon2} className='w-[16px] h-[16px]' />
+                            <Image source={icon2} className='w-[20px] h-[20px]' />
                             <Text className='text-[20px]'>18</Text>
                             <Text className='text-[12px]'>jours actifs</Text>
                         </View>
