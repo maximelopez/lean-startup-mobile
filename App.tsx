@@ -9,6 +9,7 @@ import Login from './screens/Login';
 import Signup from './screens/Signup';
 import Home from './screens/Home';
 import Score from './screens/Score';
+import Dashboard from './screens/Dashboard';
 import Profile from './screens/Profile';
 import { useAuthStore } from './store/useAuthStore';
 import { View, ActivityIndicator } from 'react-native';
@@ -18,7 +19,17 @@ const Tab = createBottomTabNavigator();
 
 function AppTabs() {
   return (
-    <Tab.Navigator screenOptions={{ headerShown: false }}>
+    <Tab.Navigator 
+      screenOptions={{ 
+        headerShown: false ,
+        tabBarActiveTintColor: "#6C0FF2",
+        tabBarStyle: {
+          borderTopWidth: 0,
+          elevation: 0,
+          shadowOpacity: 0,
+        }    
+      }}
+    >
       <Tab.Screen
         name="Home"
         component={Home}
@@ -31,6 +42,13 @@ function AppTabs() {
         component={Score}
         options={{
           tabBarIcon: ({ color, size }) => <MaterialIcons name="insights" size={size} color={color} />,
+        }}
+      />
+      <Tab.Screen
+        name="Dashboard"
+        component={Dashboard}
+        options={{
+          tabBarIcon: ({ color, size }) => <MaterialIcons name="bar-chart" size={size} color={color} />,
         }}
       />
       <Tab.Screen
@@ -51,11 +69,10 @@ export default function App() {
     loadAuthState();
   }, []);
 
-  // Tant que l'état n'est pas chargé, afficher un loader
   if (!hydrated) {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator size="large" color="#4A3983" />
+        <ActivityIndicator size="large" color="#6C0FF2" />
       </View>
     );
   }

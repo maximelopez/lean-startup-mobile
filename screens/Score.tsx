@@ -8,7 +8,7 @@ import icon3 from '../assets/icons/dashboard-icon3.png';
 
 export default function Score() {
     return (
-        <SafeAreaView className="flex-1 bg-white">
+        <SafeAreaView className="flex-1 bg-white" edges={['top']}>
             <ScrollView>
 
                 <View className='mx-6'>

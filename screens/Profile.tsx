@@ -8,7 +8,7 @@ export default function Profile() {
   const logout = useAuthStore(state => state.logout);
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
+    <SafeAreaView className="flex-1 bg-white" edges={['top']}>
     
       <ScrollView
               className="flex-1 bg-white"

@@ -9,7 +9,7 @@ export default function Home() {
   const user = useAuthStore(state => state.user);
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
+    <SafeAreaView className="flex-1 bg-white" edges={['top']}>
       <ScrollView
         className="flex-1 bg-white"
         showsVerticalScrollIndicator={false}
