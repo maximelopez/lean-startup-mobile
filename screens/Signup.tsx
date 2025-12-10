@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useAuthStore } from '../store/useAuthStore';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
-import { shadows } from '../utils/shadows';
 import Button from '../components/Button';
 import Input from '../components/Input';
 import Constants from "expo-constants";
@@ -62,24 +61,9 @@ export default function Signup({ navigation }: Props) {
 
   return (
     <View className="flex-1 bg-white">
-
-      <View className="flex-1 flex-row items-center justify-center">
-        <Text className="text-black text-center  mr-[6px]">Déjà inscrit(e) ?</Text>
-        <TouchableOpacity
-          className='bg-[#6C0FF2] rounded-[15px]'
-          onPress={() => navigation.navigate('Login')}
-          activeOpacity={0.8}
-        >
-          <Text className='px-[10px] py-[5px] text-white'>Connectez-vous</Text>
-        </TouchableOpacity>
-      </View>
-
-      <View 
-        className="h-4/5 bg-white rounded-t-[30px] p-5 items-center mt-auto"
-        style={shadows.custom}
-      >
+      <View className="bg-white rounded-t-[30px] p-5 items-center mt-[40px]">
         <Image source={logo} className='w-[114px] h-[113px]' />
-        <Text className="text-4xl font-bold mb-6 mt-6 text-black">Inscription</Text>
+        <Text className="text-4xl font-bold mb-6 text-black">Inscription</Text>
         <Text className="text-gray-500 mb-9 text-center">Saisissez vos informations ci‑dessous</Text>
         <View className='w-full gap-[20px] mb-[20px]'>
           <Input
@@ -110,6 +94,16 @@ export default function Signup({ navigation }: Props) {
           onPress={handleSignup}
           loading={loading}
         />
+      </View>
+      <View className="flex-1 flex-row items-center justify-center">
+        <Text className="text-black text-center  mr-[6px]">Déjà inscrit(e) ?</Text>
+        <TouchableOpacity
+          className='bg-[#6C0FF2] rounded-[15px]'
+          onPress={() => navigation.navigate('Login')}
+          activeOpacity={0.8}
+        >
+          <Text className='px-[10px] py-[5px] text-white'>Connectez-vous</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
