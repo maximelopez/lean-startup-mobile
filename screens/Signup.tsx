@@ -45,12 +45,9 @@ export default function Signup({ navigation }: Props) {
         body: JSON.stringify({ name, email, password }),
       });
 
-      const data = await response.json();
-
-      if (response.ok && data.user && data.token) {
+      if (response.ok) {
+        const data = await response.json();
         login(data.user, data.token);
-      } else {
-        setErrorMessage(data.error || data.message || 'Impossible de s’inscrire.');
       }
 
     } catch (error: any) {
