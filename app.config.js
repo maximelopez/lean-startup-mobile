@@ -2,8 +2,8 @@ import 'dotenv/config';
 
 export default {
   expo: {
-    name: "mobile",
-    slug: "mobile",
+    name: "tribu",
+    slug: "tribu",
     version: "1.0.0",
     orientation: "portrait",
     icon: "./assets/images/icon.png",

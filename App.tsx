@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -8,6 +8,7 @@ import "./global.css"
 import Login from './screens/Login';
 import Signup from './screens/Signup';
 import Home from './screens/Home';
+import Score from './screens/Score';
 import Profile from './screens/Profile';
 import { useAuthStore } from './store/useAuthStore';
 import { View, ActivityIndicator } from 'react-native';
@@ -26,7 +27,14 @@ function AppTabs() {
         }}
       />
       <Tab.Screen
-        name="Profile"
+        name="Score"
+        component={Score}
+        options={{
+          tabBarIcon: ({ color, size }) => <MaterialIcons name="insights" size={size} color={color} />,
+        }}
+      />
+      <Tab.Screen
+        name="Profil"
         component={Profile}
         options={{
           tabBarIcon: ({ color, size }) => <MaterialIcons name="person" size={size} color={color} />,
