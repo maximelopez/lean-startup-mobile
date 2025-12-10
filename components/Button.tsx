@@ -1,15 +1,11 @@
 import React from 'react';
 import { TouchableOpacity, Text, ActivityIndicator } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-
-
 
 export default function Button({
   title,
   onPress,
   loading = false,
   disabled = false,
-  colors = ['#4A3983', '#4A3983', '#C6B9EF'],
 }: any) {
   const isDisabled = loading || disabled;
 
@@ -18,26 +14,15 @@ export default function Button({
       disabled={isDisabled}
       onPress={onPress}
       activeOpacity={0.8}
-      style={{ width: '100%', borderRadius: 24, overflow: 'hidden', height: 56, marginBottom: 12 }}
+      className='bg-[#6C0FF2] w-full h-[56px] justify-center rounded-[15px]'
     >
-      <LinearGradient
-        colors={
-          isDisabled
-            ? ['#4A3983', '#4A3983', '#C6B9EF']
-            : colors
-        }
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
-      >
         {loading ? (
           <ActivityIndicator color="white" />
         ) : (
-          <Text className="text-white text-center font-bold text-xl">
+          <Text className="text-white text-center font-bold text-[20px]">
             {title}
           </Text>
         )}
-      </LinearGradient>
     </TouchableOpacity>
   );
 }

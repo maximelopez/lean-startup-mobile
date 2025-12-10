@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextInput, View, Text } from 'react-native';
+import { TextInput, View } from 'react-native';
 
 export default function Input({
   value,
@@ -9,7 +9,7 @@ export default function Input({
   secureTextEntry = false,
 }: any) {
   return (
-    <View className="w-full mb-6">
+    <View className="w-full">
       <TextInput
         value={value}
         onChangeText={onChangeText}
@@ -19,8 +19,8 @@ export default function Input({
         secureTextEntry={secureTextEntry}
         autoCapitalize="none"
         autoCorrect={false}
-        selectionColor="#C6B9EF"
-        className="w-full border border-gray-200 rounded-3xl p-4"
+        selectionColor="#6C0FF2"
+        className="w-full border border-gray-200 rounded-[15px] h-[56px] px-[24px]"
       />
     </View>
   );

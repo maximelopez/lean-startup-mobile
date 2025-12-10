@@ -3,7 +3,7 @@ import 'dotenv/config';
 export default {
   expo: {
     name: "Tribu",
-    slug: "tribu",
+    slug: "mobile",
     version: "1.0.0",
     orientation: "portrait",
     icon: "./assets/images/tribu.png",

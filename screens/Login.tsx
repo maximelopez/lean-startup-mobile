@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { useAuthStore } from '../store/useAuthStore';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { shadows } from '../utils/shadows';
 import Button from '../components/Button';
 import Input from '../components/Input';
 import Constants from "expo-constants";
+import logo from '../assets/images/tribu-logo.png';
 
 type Props = {
   navigation: any;
@@ -53,35 +55,40 @@ export default function Login({ navigation }: Props) {
   };
 
   return (
-    <View className='flex-1 bg-[#4A3983]'>
+    <View className='flex-1 bg-white'>
 
       <View className="flex-1 flex-row items-center justify-center">
-        <Text className="text-white text-center">Pas encore de compte ? </Text>
+        <Text className="text-black text-center mr-[6px]">Pas encore de compte ?</Text>
         <TouchableOpacity
-          className='bg-[#C6B9EF] rounded-3xl'
+          className='bg-[#6C0FF2] rounded-[15px]'
           onPress={() => navigation.navigate('Signup')} 
           activeOpacity={0.8}>
-            <Text className='px-4 py-2 text-white'>Inscrivez-vous</Text> 
+            <Text className='px-[10px] py-[5px] text-white'>Inscrivez-vous</Text> 
         </TouchableOpacity>
       </View>
  
-      <View className="h-4/5 bg-white rounded-t-[30px] p-5 items-center mt-auto">
+      <View 
+        className="h-4/5 bg-white rounded-t-[30px] p-5 items-center mt-auto"
+        style={shadows.custom}
+      >
+        <Image source={logo} className='w-[114px] h-[113px]' />
         <Text className="text-4xl font-bold mb-6 mt-6 text-black">Bon retour</Text>
         <Text className="text-gray-500 mb-9">Saisissez vos informations ci-dessous</Text>
-        
-        <Input
-          value={email}
-          onChangeText={setEmail}
-          placeholder="Adresse mail"
-          keyboardType="email-address"
-        />
+        <View className='w-full gap-[20px] mb-[20px]'>
+          <Input
+            value={email}
+            onChangeText={setEmail}
+            placeholder="Adresse mail"
+            keyboardType="email-address"
+          />
 
-        <Input
-          value={password}
-          onChangeText={setPassword}
-          placeholder="Mot de passe"
-          secureTextEntry
-        />
+          <Input
+            value={password}
+            onChangeText={setPassword}
+            placeholder="Mot de passe"
+            secureTextEntry
+          />
+        </View>
 
         {errorMessage && <Text className="text-red-500 mb-3">{errorMessage}</Text>}
         
