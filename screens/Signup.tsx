@@ -1,10 +1,13 @@
 import { useState } from 'react';
-//import { useAuthStore } from '../store/useAuthStore';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import Button from '../components/Button';
 import Input from '../components/Input';
 import Constants from "expo-constants";
 import logo from '../assets/images/tribu-logo.png';
+
+// Redux
+import { useDispatch } from 'react-redux';
+import { login } from '@/reducers/user';
 
 type Props = {
   navigation: any;
@@ -21,7 +24,7 @@ export default function Signup({ navigation }: Props) {
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(false);
 
-  //const { login } = useAuthStore();
+  const dispatch = useDispatch();
 
   const handleSignup = async () => {
     if (!name || !email || !password) {
@@ -48,7 +51,10 @@ export default function Signup({ navigation }: Props) {
 
       if (response.ok) {
         const data = await response.json();
-        //login(data.user, data.token);
+
+        // Dispatch pour stocker l'utilisateur connecté
+        const { name, email, score } = data.user;
+        dispatch(login({ name, email, score }));
       }
 
     } catch (error: any) {
