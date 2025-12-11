@@ -32,7 +32,7 @@ export default function Home() {
         </View>
 
         {/* Donut */}
-        <DonutProgress score={78} progress={0.35} />
+        <DonutProgress score={78} progress={0.78} />
 
         {/* Mes défis */}
         <View className="px-6 mb-4">
