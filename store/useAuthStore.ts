@@ -16,6 +16,7 @@ interface AuthState {
   login: (userData: User, token: string) => Promise<void>;
   logout: () => Promise<void>;
   loadAuthState: () => Promise<void>;
+  updateUser: (updatedUser: Partial<User>) => void; // <- ajouté
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
@@ -48,6 +49,8 @@ export const useAuthStore = create<AuthState>((set) => ({
     set({ hydrated: true });
   },
 
-  updateUser: (updatedUser: User) => 
-  set((state) => ({ user: { ...state.user, ...updatedUser } })),
+  updateUser: (updatedUser: Partial<User>) =>
+  set((state) => ({
+    user: state.user ? { ...state.user, ...updatedUser } : null,
+  })),
 }));
