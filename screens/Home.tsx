@@ -10,21 +10,19 @@ export default function Home() {
   const {name, score } = useSelector((state: any) => state.user.user);
 
   return (
-    <SafeAreaView className="flex-1 bg-white" edges={['top']}>
+    <SafeAreaView className="flex-1 bg-black" edges={['top']}>
       <ScrollView
-        className="flex-1 bg-white"
+        className="flex-1 bg-[#F7F6F3]"
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 60 }}
+        contentContainerStyle={{ paddingBottom: 20 }}
       >
-
-        {/* Header */}
-        <View className='px-6'>
-          <View className="items-center mt-10">
+        <View className='px-6 mt-[14px]'>
+          <View className="items-center">
             <Image source={logo} className='w-[146px] h-[62px]' />
           </View>
           
           <View>
-            <Text  style={{ fontFamily: "Peachy" }} className="text-[28px] text-gray-900 mb-2">
+            <Text  style={{ fontFamily: "Peachy" }} className="text-[28px] font-bold mb-2">
             Bonjour, {name}
           </Text>
 
@@ -39,7 +37,7 @@ export default function Home() {
 
         {/* Mes défis */}
         <View className="px-6 mb-4">
-          <Text style={{ fontFamily: "Peachy" }} className="text-[24px] text-gray-900 text-center">
+          <Text style={{ fontFamily: "Peachy" }} className="text-[28px] font-bold text-center">
             Mes défis
           </Text>
         </View>
@@ -47,11 +45,10 @@ export default function Home() {
         <View className="px-6">
 
           <ChallengeCard
-          
             title="Écrire un journal"
             progress={1}
             status="Terminé"
-            color="#FFF200"
+            color="#FFCF06"
             finished={true}
           />
 
@@ -59,14 +56,14 @@ export default function Home() {
             title="Course à pied en famille"
             progress={0.30}
             status="En cours…"
-            color="#A259FF"
+            color="#6C0FF2"
           />
 
           <ChallengeCard
             title="Déconnexion numérique"
             progress={0.75}
             status="En cours…"
-            color="#A259FF"
+            color="#6C0FF2"
           />
 
         </View>

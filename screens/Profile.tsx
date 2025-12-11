@@ -10,13 +10,13 @@ export default function Profile() {
   const dispatch = useDispatch();
 
   return (
-    <SafeAreaView className="flex-1 bg-white" edges={['top']}>
-      <ScrollView
-          className="flex-1 bg-white"
+    <SafeAreaView className="flex-1 bg-black" edges={['top']}>
+      <ScrollView 
+          className="flex-1 bg-[#F7F6F3]"
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ paddingBottom: 60 }}
-        >
-        <View className="flex-2 items-center bg-white pt-20 px-6">
+          contentContainerStyle={{ paddingBottom: 20 }}
+      >
+        <View className="flex-2 items-center pt-20 px-6">
           <Image
             source={{ uri: "https://avatar.iran.liara.run/public/boy?seed=12" }}
             className="w-32 h-32 rounded-full mb-5"
@@ -132,43 +132,22 @@ export default function Profile() {
 
           </View>
 
-          <View className="w-full items-center">
-
-                    
-          <View 
-            className="w-[30px] h-[30px] rounded-full justify-center items-center mb-10"
-            style={{ backgroundColor: "#6F28D9" }}
-          >
-            <Text className="text-white text-[16px] font-bold">
-              +
-            </Text>
-          </View>
-        </View>
-
           <TouchableOpacity
-              onPress={() => dispatch(logout())}
-              className="w-full py-3 rounded-xl bg-white mb-4 mt-4"
-              style={{ borderWidth: 2, borderColor: "#00000", backgroundColor: "#6B21A8" }}
+              className="w-full h-[56px] rounded-[12px] bg-[#6C0FF2] items-center justify-center mb-[16px]"
               activeOpacity={0.8}
               >
-              <Text
-                className="font-semibold text-center text-lg"
-                style={{ color: "#f1f1f1ff",fontFamily: "Peachy" }}
-              >
+              <Text className="font-bold text-center text-[20px] text-white">
                 Devenir premium
               </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
               onPress={() => dispatch(logout())}
-              className="w-full py-3 rounded-xl bg-white"
-              style={{ borderWidth: 2, borderColor: "#6B21A8" }}
+              className="w-full h-[56px] rounded-[12px] bg-white items-center justify-center mb-[16px] border border-[#6C0FF2]"
               activeOpacity={0.8}
               >
               <Text
-                className="font-semibold text-center text-lg"
-                style={{ color: "#6B21A8",fontFamily: "Peachy", }}
-              >
+                className="font-bold text-center text-[20px] text-[#6C0FF2]">
                 Se déconnecter
               </Text>
           </TouchableOpacity>

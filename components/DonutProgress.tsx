@@ -56,7 +56,7 @@ export default function DonutProgress({
             cx={size / 2}
             cy={size / 2}
             r={radius}
-            stroke="#9333EA"
+            stroke="#6C0FF2"
             strokeWidth={thickness}
             fill="none"
             strokeLinecap="round"
@@ -77,8 +77,8 @@ export default function DonutProgress({
             borderRadius: innerSize / 2,
           }}
         >
-          <Text className="text-[38px] font-bold text-purple-700">{score}</Text>
-          <Text className="text-[14px] text-gray-600">points</Text>
+          <Text className="text-[38px] font-bold text-[#6C0FF2]">{score}</Text>
+          <Text className="text-[14px] font-bold text-[#6C0FF2]">points</Text>
         </View>
 
 

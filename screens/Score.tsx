@@ -3,6 +3,7 @@ import { View, Text, ScrollView, Image } from 'react-native';
 import ScoreCard from '@/components/ScoreCard';
 import DonutProgress from '../components/DonutProgress';
 import { useSelector } from 'react-redux';
+import { shadows } from "../utils/shadows";
 import icon1 from '../assets/icons/dashboard-icon1.png';
 import icon2 from '../assets/icons/dashboard-icon2.png';
 import icon3 from '../assets/icons/dashboard-icon3.png';
@@ -12,8 +13,12 @@ export default function Score() {
     const { score } = userState.user;
 
     return (
-        <SafeAreaView className="flex-1 bg-white" edges={['top']}>
-            <ScrollView>
+        <SafeAreaView className="flex-1 bg-black" edges={['top']}>
+            <ScrollView 
+                className="flex-1 bg-[#F7F6F3]"
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={{ paddingBottom: 20 }}
+            >
 
                 <View className='mx-4'>
                     <Text className="text-center text-[32px] font-bold mt-4 mb-4">
@@ -45,21 +50,27 @@ export default function Score() {
                         Résultat de cette semaine
                     </Text>
                     <View className='flex-row gap-[12px] justify-between items-center mb-[15px]'>
-                        <View className='bg-white border border-[#FFCF06] w-[100px] h-[100px] rounded-[15px] items-center justify-center'>
-                            <Image source={icon1} className='w-[16px] h-[16px]' />
-                            <Text className='text-[20px]'>+23%</Text>
-                            <Text className='text-[12px]'>progression</Text>
+                        <View>
+                            <View className='bg-white w-[100px] h-[100px] rounded-[15px] items-center justify-center' style={shadows.custom}>
+                                <Image source={icon1} className='w-[16px] h-[16px]' />
+                                <Text className='text-[20px] font-bold'>+23%</Text>
+                                <Text className='text-[12px] font-bold'>progression</Text>
+                            </View>
                         </View>
-                        <View className='bg-white border border-[#FFCF06] w-[120px] h-[120px] rounded-[15px] items-center justify-center'>
-                            <Image source={icon2} className='w-[20px] h-[20px]' />
-                            <Text className='text-[20px]'>18</Text>
-                            <Text className='text-[12px]'>jours actifs</Text>
-                        </View>
-                        <View className='bg-white border border-[#FFCF06] w-[100px] h-[100px] rounded-[15px] items-center justify-center'>
-                            <Image source={icon3} className='w-[16px] h-[16px]' />
-                            <Text className='text-[20px]'>12/15</Text>
-                            <Text className='text-[12px]'>objectifs</Text>
-                        </View>
+                       <View>
+                            <View className='bg-white w-[120px] h-[120px] rounded-[15px] items-center justify-center' style={shadows.custom}>
+                                <Image source={icon2} className='w-[20px] h-[20px]' />
+                                <Text className='text-[20px] font-bold'>18</Text>
+                                <Text className='text-[12px] font-bold'>jours actifs</Text>
+                            </View>
+                        </View> 
+                        <View>
+                            <View className='bg-white w-[100px] h-[100px] rounded-[15px] items-center justify-center' style={shadows.custom}>
+                                <Image source={icon3} className='w-[16px] h-[16px]' />
+                                <Text className='text-[20px] font-bold'>12/15</Text>
+                                <Text className='text-[12px] font-bold'>objectifs</Text>
+                            </View>
+                        </View> 
                     </View>
 
                     <View className='flex gap-[16px]'>
