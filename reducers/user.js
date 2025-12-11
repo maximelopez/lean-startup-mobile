@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     user: {
+        id: '',
         name: '',
         email: '',
         score: 0,
@@ -22,13 +23,12 @@ export const userSlice = createSlice({
 
         // Déconnecter l'utilisateur
         logout: (state) => {
-            state.user = { name: '', email: '', score: 0 };
+            state.user = { id: '', name: '', email: '', score: 0 };
             state.loggedIn = false;
         },
 
-        // Mettre à jour uniquement le score
         setScore: (state, action) => {
-           state.user = { ...state.user, ...action.payload };
+           state.user.score = action.payload;
         },
     }
 });

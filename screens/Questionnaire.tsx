@@ -1,12 +1,19 @@
-import { useNavigation } from '@react-navigation/native';
 import { useRef, useState } from 'react';
 import { Alert, FlatList, KeyboardAvoidingView, Platform, SafeAreaView, Text, TextInput, TouchableOpacity, View, useWindowDimensions } from 'react-native';
 import RatingQuestion from '../components/RatingQuestion';
+import Constants from "expo-constants";
+import { useSelector, useDispatch } from 'react-redux';
+import { setScore } from '@/reducers/user';
 
-export default function Questionnaire() {
-    const navigation = useNavigation<any>();
+const API_URL = Constants.expoConfig?.extra?.API_URL;
+
+export default function Questionnaire({ navigation }: any) {
     const flatListRef = useRef<FlatList>(null);
     const { width } = useWindowDimensions();
+
+    const dispatch = useDispatch();
+    const userState = useSelector((state: any) => state.user);
+    const userId = userState.user.id;
 
     // Questions (1–10)
     const [energie, setEnergie] = useState(0);
@@ -52,12 +59,20 @@ export default function Questionnaire() {
 
         console.log("Score final =", scoreFinal);
 
-        navigation.reset({
-            index: 0,
-            routes: [
-                { name: "AppTabs", params: { message: "questionnaire rempli" } }
-            ]
-        });
+        // Enregistrer le score en base + redux
+        fetch(API_URL + 'users/' + userId +'/score', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+             body: JSON.stringify({ score: scoreFinal }),
+        })
+            .then(response => response.json())
+            .then((data) => {
+                dispatch(setScore(data.score));
+                navigation.navigate('Dashboard');
+                
+            })
     };
 
     // Configuration des questions

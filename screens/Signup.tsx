@@ -53,8 +53,8 @@ export default function Signup({ navigation }: Props) {
         const data = await response.json();
 
         // Dispatch pour stocker l'utilisateur connecté
-        const { name, email, score } = data.user;
-        dispatch(login({ name, email, score }));
+        const { id, name, email, score } = data.user;
+        dispatch(login({ id, name, email, score }));
       }
 
     } catch (error: any) {
