@@ -35,7 +35,7 @@ export default function Home() {
         </View>
 
         {/* Donut */}
-        <DonutProgress score={score} progress={score / 100} activities={true} />
+        <DonutProgress score={score} progress={score / 100} size={200} thickness={35} />
 
         {/* Mes défis */}
         <View className="px-6 mb-4">

@@ -15,17 +15,27 @@ export default function Score() {
         <SafeAreaView className="flex-1 bg-white" edges={['top']}>
             <ScrollView>
 
-                <View className='mx-6'>
+                <View className='mx-4'>
                     <Text className="text-center text-[32px] font-bold mt-4 mb-4">
                         Ton score bien-être
                     </Text>
                     <Text className='text-center text-gray-500 text-[12px] mb-10'>
                         Les scores sont calculés à partir de tes activités et ressentis. Tu peux les ajuster dans ton profil.
                     </Text>
-                    <DonutProgress score={score} progress={score / 100} />
+                    <View className='flex-row gap-4'>
+                        <DonutProgress score={score} progress={score / 100} size={150} thickness={25} />
+                        <View className='mt-4'>
+                            <Text className='font-bold mb-2'>Ce qui t’a fait du bien :</Text>
+                            <Text className='mb-2'>🍳 Cuisine → +8 pts</Text>
+                            <Text className='mb-2'>🚶‍ Balade en famille → +10 pts</Text>
+                            <Text className='mb-2'>📚 Lecture → +6 pts</Text>
+                            <Text className='mb-2'>🎮 Jeu en ligne → +4 pt</Text>
+                        </View>
+                    </View>
                 </View>
+
                 <View className="mx-6">
-                    <Text className="text-center text-[32px] font-bold mt-4 mb-4">
+                    <Text className="text-center text-[32px] font-bold mb-4">
                         Tableau de bord
                     </Text>
                     <Text className=" font-bold mb-4">
