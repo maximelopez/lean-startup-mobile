@@ -13,6 +13,9 @@ import Dashboard from './screens/Dashboard';
 import Profile from './screens/Profile';
 import { useAuthStore } from './store/useAuthStore';
 import { View, ActivityIndicator } from 'react-native';
+import Questionnaire from './screens/Questionnaire';
+
+
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -95,7 +98,10 @@ export default function App() {
             <Stack.Screen name="Signup" component={Signup} />
           </>
         ) : (
-          <Stack.Screen name="AppTabs" component={AppTabs} />
+        <>
+            <Stack.Screen name="AppTabs" component={AppTabs} />
+            <Stack.Screen name="Questionnaire" component={Questionnaire} />
+        </>
         )}
       </Stack.Navigator>
     </NavigationContainer>
