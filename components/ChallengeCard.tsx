@@ -34,7 +34,7 @@ export default function ChallengeCard({
         <View
           className="w-14 h-14 rounded-full justify-center items-center"
           style={{ 
-            backgroundColor: finished ? "#F2C94C" : "transparent",
+            backgroundColor: finished ? "#FFF200" : "transparent",
             borderWidth: finished ? 0 : 3,
             borderColor: "#A259FF",
           }}

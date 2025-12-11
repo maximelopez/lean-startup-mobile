@@ -1,9 +1,10 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView, Image } from 'react-native';
 import DonutProgress from '../components/DonutProgress';
 import ChallengeCard from "../components/ChallengeCard";
 import { useSelector } from 'react-redux';
+import logo from '../assets/images/tribu-home.png';
 
 export default function Home() {
   const {name, score } = useSelector((state: any) => state.user.user);
@@ -17,30 +18,28 @@ export default function Home() {
       >
 
         {/* Header */}
-        <View className="mt-10 px-6">
-          <Text style={{ fontFamily: "Outfit" }} className="text-center text-[16px] text-[#4A3983] mb-10">
-            “Ensemble, on transforme les routines en moments de bonheur”
+        <View className='px-6'>
+          <View className="items-center mt-10">
+            <Image source={logo} className='w-[146px] h-[62px]' />
+          </View>
+          
+          <View>
+            <Text className="text-[28px] font-bold text-gray-900 mb-2">
+            Bonjour, {name}
           </Text>
 
-          <Text
-  className="text-[28px] text-gray-900 mb-2"
-  style={{ fontFamily: "Peachy" }}
->
-  Bonjour, {name}
-</Text>
-
-
-          <Text className="text-[16px] text-gray-700 mb-10">
+          <Text className="text-[16px] text-gray-700 mb-6">
             Ton score bien-être
           </Text>
+          </View> 
         </View>
 
         {/* Donut */}
-        <DonutProgress score={score} progress={score / 100} />
+        <DonutProgress score={score} progress={score / 100} activities={true} />
 
         {/* Mes défis */}
         <View className="px-6 mb-4">
-          <Text className="text-[24px] font-bold text-gray-900">
+          <Text className="text-[24px] font-bold text-gray-900 text-center">
             Mes défis
           </Text>
         </View>
@@ -51,7 +50,7 @@ export default function Home() {
             title="Écrire un journal"
             progress={1}
             status="Terminé"
-            color="#F2C94C"
+            color="#FFF200"
             finished={true}
           />
 
