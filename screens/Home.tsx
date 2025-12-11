@@ -18,13 +18,17 @@ export default function Home() {
 
         {/* Header */}
         <View className="mt-10 px-6">
-          <Text className="text-center text-[16px] text-[#4A3983] mb-10">
+          <Text style={{ fontFamily: "Outfit" }} className="text-center text-[16px] text-[#4A3983] mb-10">
             “Ensemble, on transforme les routines en moments de bonheur”
           </Text>
 
-          <Text className="text-[28px] font-bold text-gray-900 mb-2">
-            Bonjour, {name}
-          </Text>
+          <Text
+  className="text-[28px] text-gray-900 mb-2"
+  style={{ fontFamily: "Peachy" }}
+>
+  Bonjour, {name}
+</Text>
+
 
           <Text className="text-[16px] text-gray-700 mb-10">
             Ton score bien-être
