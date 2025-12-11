@@ -10,7 +10,7 @@ import Animated, {
 interface DonutProgressProps {
   size?: number;
   thickness?: number;
-  progress?: number;
+  progress: number;
   score?: number;
 }
 
@@ -19,7 +19,7 @@ const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 export default function DonutProgress({
   size = 200,
   thickness = 30,
-  progress = 0.5,
+  progress,
   score = 78,
 }: DonutProgressProps) {
 
@@ -40,7 +40,7 @@ export default function DonutProgress({
   const innerSize = size - thickness * 2;
 
   return (
-    <View className="items-center justify-center mb-28">
+    <View className="items-center justify-center mb-10">
       <View className="relative">
 
         {/* SVG donut */}

@@ -34,12 +34,6 @@ export default function Profile() {
           <Text className="text-gray-600 text-lg mb-4">
             {user?.email || ""}
           </Text>
-
-          <View className="px-6 py-2 rounded-full bg-blue-100 mt-2 mb-8">
-            <Text className="text-blue-700 font-semibold text-center">
-              {user?.isPremium ? "Premium" : "Compte Gratuit"}
-            </Text>
-          </View>
           
 
       {/* ——————————————————————————————— */}
@@ -161,26 +155,6 @@ export default function Profile() {
 </View>
 
 
-
-      {/* ———————————————————————————————-- */}
-      {/*           BOUTONS PREMIUM         */}
-      {/* ———————————————————————————————-- */}
-
-         {/* Devenir Premium */}
-          {!user?.isPremium && (
-              <TouchableOpacity
-                className="w-full mb-6 py-3 rounded-xl mt-8"
-                style={{ backgroundColor: "#6B21A8" }}
-                activeOpacity={0.8}
-              >
-
-                <Text className="text-center font-semibold text-white">
-                  Devenir Premium
-                </Text>
-            </TouchableOpacity>
-          )}
-
-          {/* Se déconnecter */}
           <TouchableOpacity
               onPress={() => logout()}
               className="w-full py-3 rounded-xl bg-white"

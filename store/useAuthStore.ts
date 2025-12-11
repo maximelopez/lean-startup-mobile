@@ -5,14 +5,14 @@ interface User {
   id: string;
   name: string;
   email: string;
-  isPremium: boolean;
+  score: number;
 }
 
 interface AuthState {
   user: User | null;
   token: string | null;
   isLoggedIn: boolean;
-  hydrated: boolean; // <-- nouvel état
+  hydrated: boolean;
   login: (userData: User, token: string) => Promise<void>;
   logout: () => Promise<void>;
   loadAuthState: () => Promise<void>;
@@ -22,7 +22,7 @@ export const useAuthStore = create<AuthState>((set) => ({
   user: null,
   token: null,
   isLoggedIn: false,
-  hydrated: false, // <-- par défaut false
+  hydrated: false,
 
   login: async (userData, token) => {
     set({ user: userData, token, isLoggedIn: true });

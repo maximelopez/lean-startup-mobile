@@ -8,6 +8,14 @@ import ChallengeCard from "../components/ChallengeCard";
 export default function Home() {
   const user = useAuthStore(state => state.user);
 
+  if (!user) {
+    return (
+      <SafeAreaView className="flex-1 justify-center items-center">
+        <Text>Chargement...</Text>
+      </SafeAreaView>
+    );
+  }
+
   return (
     <SafeAreaView className="flex-1 bg-white" edges={['top']}>
       <ScrollView
@@ -23,7 +31,7 @@ export default function Home() {
           </Text>
 
           <Text className="text-[28px] font-bold text-gray-900 mb-2">
-            Bonjour, {user?.name}
+            Bonjour, {user.name}
           </Text>
 
           <Text className="text-[16px] text-gray-700 mb-10">
@@ -32,7 +40,7 @@ export default function Home() {
         </View>
 
         {/* Donut */}
-        <DonutProgress score={78} progress={0.78} />
+        <DonutProgress score={user.score} progress={user.score / 100} />
 
         {/* Mes défis */}
         <View className="px-6 mb-4">
