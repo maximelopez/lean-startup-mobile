@@ -25,17 +25,6 @@ const store = configureStore({
 // Navigation
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
-const DashboardStack = createNativeStackNavigator();
-
-// Stack interne pour le Dashboard
-function DashboardStackScreen() {
-  return (
-    <DashboardStack.Navigator screenOptions={{ headerShown: false }}>
-      <DashboardStack.Screen name="Dashboard" component={Dashboard} />
-      <DashboardStack.Screen name="Questionnaire" component={Questionnaire} />
-    </DashboardStack.Navigator>
-  );
-}
 
 // Tabs principales
 function AppTabs() {
@@ -67,7 +56,7 @@ function AppTabs() {
       />
       <Tab.Screen
         name="Dashboard"
-        component={DashboardStackScreen}
+        component={Dashboard}
         options={{
           tabBarIcon: ({ color, size }) => <MaterialIcons name="bar-chart" size={size} color={color} />,
         }}
@@ -94,8 +83,9 @@ function AppTabs() {
 
 // Composant principal qui lit le state Redux
 function MainNavigator() {
-  const user = useSelector((state: any) => state.user);
-  const isLoggedIn = user.loggedIn;
+  const userState = useSelector((state: any) => state.user);
+  const isLoggedIn = userState.loggedIn;
+  const hasCompletedQuestionnaire = userState.user.hasCompletedQuestionnaire;
 
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -104,6 +94,8 @@ function MainNavigator() {
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Signup" component={Signup} />
         </>
+      ) : !hasCompletedQuestionnaire ?(
+        <Stack.Screen name="Questionnaire" component={Questionnaire} />
       ) : (
         <Stack.Screen name="AppTabs" component={AppTabs} />
       )}

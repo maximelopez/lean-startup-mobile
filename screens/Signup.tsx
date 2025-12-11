@@ -52,9 +52,9 @@ export default function Signup({ navigation }: Props) {
       if (response.ok) {
         const data = await response.json();
 
-        // Dispatch pour stocker l'utilisateur connecté
-        const { id, name, email, score } = data.user;
-        dispatch(login({ id, name, email, score }));
+        // Mettre à jour Redux
+        const { id, name, email, score, hasCompletedQuestionnaire } = data.user;
+        dispatch(login({ id, name, email, score, hasCompletedQuestionnaire }));
       }
 
     } catch (error: any) {

@@ -57,8 +57,6 @@ export default function Questionnaire({ navigation }: any) {
         const total = energie + stress + sommeil + motivation + alimentation + concentration;
         const scoreFinal = Math.round((total / 30) * 100);
 
-        console.log("Score final =", scoreFinal);
-
         // Enregistrer le score en base + redux
         fetch(API_URL + 'users/' + userId +'/score', {
             method: 'PUT',
@@ -69,10 +67,8 @@ export default function Questionnaire({ navigation }: any) {
         })
             .then(response => response.json())
             .then((data) => {
-                dispatch(setScore(data.score));
-                navigation.navigate('Dashboard');
-                
-            })
+                dispatch(setScore({ score: data.score, hasCompletedQuestionnaire: true }));
+            });
     };
 
     // Configuration des questions

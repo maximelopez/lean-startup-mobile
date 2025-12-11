@@ -20,7 +20,7 @@ export default function DonutProgress({
   size = 200,
   thickness = 30,
   progress,
-  score = 78,
+  score,
 }: DonutProgressProps) {
 
   const radius = (size - thickness) / 2;

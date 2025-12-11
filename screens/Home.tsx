@@ -6,8 +6,7 @@ import ChallengeCard from "../components/ChallengeCard";
 import { useSelector } from 'react-redux';
 
 export default function Home() {
-  const userState = useSelector((state: any) => state.user);
-  const {name, score } = userState.user;
+  const {name, score } = useSelector((state: any) => state.user.user);
 
   return (
     <SafeAreaView className="flex-1 bg-white" edges={['top']}>

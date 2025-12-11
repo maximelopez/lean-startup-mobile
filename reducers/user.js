@@ -7,6 +7,7 @@ const initialState = {
         name: '',
         email: '',
         score: 0,
+        hasCompletedQuestionnaire: false,
     },
     loggedIn: false,
 };
@@ -23,12 +24,12 @@ export const userSlice = createSlice({
 
         // Déconnecter l'utilisateur
         logout: (state) => {
-            state.user = { id: '', name: '', email: '', score: 0 };
+            state.user = { id: '', name: '', email: '', score: 0, hasCompletedQuestionnaire: false };
             state.loggedIn = false;
         },
 
         setScore: (state, action) => {
-           state.user.score = action.payload;
+           state.user = { ...state.user, ...action.payload };
         },
     }
 });
