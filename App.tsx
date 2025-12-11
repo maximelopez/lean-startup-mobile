@@ -20,8 +20,9 @@ import { persistStore, persistReducer } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import user from './reducers/user';
+import family from './reducers/family';
 
-const reducers = combineReducers({ user });
+const reducers = combineReducers({ user, family });
 
 const persistConfig = {
   key: 'tribu',
