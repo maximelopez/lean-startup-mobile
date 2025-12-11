@@ -1,7 +1,7 @@
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Text, View } from 'react-native';
 
-export default function dashboard() {
+export default function Dashboard() {
     return (
         <SafeAreaView className="bg-black flex-1" edges={['top']}>
                 <View className='flex-1 justify-center items-center bg-[#F7F6F3]'>

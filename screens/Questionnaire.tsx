@@ -8,7 +8,7 @@ import { setScore } from '@/reducers/user';
 
 const API_URL = Constants.expoConfig?.extra?.API_URL;
 
-export default function Questionnaire({ navigation }: any) {
+export default function Questionnaire() {
     const flatListRef = useRef<FlatList>(null);
     const { width } = useWindowDimensions();
 
@@ -29,15 +29,12 @@ export default function Questionnaire({ navigation }: any) {
     const [douleur, setDouleur] = useState<string | null>(null);
     const [tempsExterieur, setTempsExterieur] = useState<string | null>(null);
 
-    // Commentaire libre
-    const [commentaire, setCommentaire] = useState("");
-
     // Bouton stylisé
     const ChoiceButton = ({ label, selected, onPress }: any) => (
         <TouchableOpacity
             onPress={onPress}
             className={`px-6 py-3 rounded-xl mr-3 mb-3 
-                ${selected ? "bg-purple-700" : "bg-gray-200"}`}
+                ${selected ? "bg-[#6C0FF2]" : "bg-gray-200"}`}
         >
             <Text className={`text-lg ${selected ? "text-white" : "text-black"}`}>{label}</Text>
         </TouchableOpacity>
@@ -142,11 +139,9 @@ export default function Questionnaire({ navigation }: any) {
             setValue: setConcentration
         },
         {
-            id: 'commentaire',
-            type: 'input',
-            label: "Commentaire (optionnel)",
-            value: commentaire,
-            setValue: setCommentaire
+            id: 'conclusion',
+            type: 'conclusion',
+            label: "Votre score est calculé !"
         }
     ];
 
@@ -163,15 +158,21 @@ export default function Questionnaire({ navigation }: any) {
                 {/* Intro Slide */}
                 {item.type === 'intro' && (
                     <View className="items-center justify-center space-y-6">
-                        <Text className="text-4xl font-bold text-purple-700 text-center">{item.title}</Text>
+                        <Text className="text-4xl font-bold text-[#6C0FF2] text-center">{item.title}</Text>
                         <Text className="text-xl text-gray-600 text-center px-4">{item.subtitle}</Text>
-                        <Text className="text-sm text-gray-400 mt-10">Glissez vers la gauche pour commencer →</Text>
+                        <TouchableOpacity
+                            onPress={() => nextQuestion(index)}
+                            className="mt-10 bg-[#6C0FF2] px-8 py-4 rounded-[15px]"
+                            activeOpacity={0.8}
+                            >
+                            <Text className="text-white font-bold text-lg">Commencer</Text>
+                        </TouchableOpacity>
                     </View>
                 )}
 
                 {/* Question Title */}
                 {item.type !== 'intro' && (
-                    <Text className="text-2xl font-bold text-purple-800 mb-10 text-center">
+                    <Text className="text-2xl font-bold text-[#6C0FF2] mb-10 text-center">
                         {item.label}
                     </Text>
                 )}
@@ -180,7 +181,7 @@ export default function Questionnaire({ navigation }: any) {
                 {item.type === 'rating' && (
                     <View className="w-full px-6">
                         <RatingQuestion
-                            label="" // Label is handled globally above
+                            label=""
                             value={item.value}
                             onChange={(val: number) => {
                                 item.setValue(val);
@@ -190,7 +191,7 @@ export default function Questionnaire({ navigation }: any) {
                             max={5}
                         />
                         <Text className="text-gray-400 text-center text-sm font-medium -mt-2">
-                            {item.value ? `Note: ${item.value}/5` : "Touchez une étoile"}
+                            Sélectionnez une réponse
                         </Text>
                     </View>
                 )}
@@ -212,34 +213,16 @@ export default function Questionnaire({ navigation }: any) {
                     </View>
                 )}
 
-                {/* Text Input */}
-                {item.type === 'input' && (
-                    <View className="w-full">
-                        <TextInput
-                            className="border border-purple-200 bg-purple-50 rounded-xl p-4 text-lg mb-8 h-40"
-                            placeholder="Note quelque chose ici..."
-                            placeholderTextColor="#9CA3AF"
-                            multiline
-                            textAlignVertical="top"
-                            value={item.value}
-                            onChangeText={item.setValue}
-                        />
-                        <TouchableOpacity
-                            onPress={handleSubmit}
-                            className="bg-purple-700 p-5 rounded-2xl shadow-lg shadow-purple-200"
-                        >
-                            <Text className="text-white text-center font-bold text-xl">
-                                Valider mon bilan
-                            </Text>
-                        </TouchableOpacity>
-                    </View>
-                )}
-
-                {/* Navigation Hint (except on last slide) */}
-                {index < questions.length - 1 && item.type !== 'intro' && (
-                    <Text className="text-center text-gray-300 mt-12 text-sm">
-                        Suivant ➔
+                {item.type === 'conclusion' && (     
+                <TouchableOpacity
+                    onPress={handleSubmit}
+                    className="bg-[#6C0FF2] p-5 rounded-[15px]"
+                    activeOpacity={0.8}
+                >
+                    <Text className="text-white text-center font-bold text-xl">
+                        C'est parti !
                     </Text>
+                </TouchableOpacity> 
                 )}
             </View>
         );
@@ -259,6 +242,7 @@ export default function Questionnaire({ navigation }: any) {
                     pagingEnabled
                     showsHorizontalScrollIndicator={false}
                     scrollEventThrottle={16}
+                    scrollEnabled={false}
                     renderItem={renderItem}
                     initialNumToRender={1}
                     maxToRenderPerBatch={2}
