@@ -47,4 +47,7 @@ export const useAuthStore = create<AuthState>((set) => ({
 
     set({ hydrated: true });
   },
+
+  updateUser: (updatedUser: User) => 
+  set((state) => ({ user: { ...state.user, ...updatedUser } })),
 }));

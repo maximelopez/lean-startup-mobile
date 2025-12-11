@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialIcons } from '@expo/vector-icons';
+import { View, ActivityIndicator } from 'react-native';
 import "./global.css"
 
 import Login from './screens/Login';
@@ -10,16 +11,27 @@ import Signup from './screens/Signup';
 import Home from './screens/Home';
 import Score from './screens/Score';
 import Dashboard from './screens/Dashboard';
-import Profile from './screens/Profile';
-import { useAuthStore } from './store/useAuthStore';
-import { View, ActivityIndicator } from 'react-native';
 import Questionnaire from './screens/Questionnaire';
+import Challenges from './screens/Challenges';
+import Profile from './screens/Profile';
 
-
+import { useAuthStore } from './store/useAuthStore';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
+const DashboardStack = createNativeStackNavigator();
 
+// Stack interne pour le Dashboard
+function DashboardStackScreen() {
+  return (
+    <DashboardStack.Navigator screenOptions={{ headerShown: false }}>
+      <DashboardStack.Screen name="Dashboard" component={Dashboard} />
+      <DashboardStack.Screen name="Questionnaire" component={Questionnaire} />
+    </DashboardStack.Navigator>
+  );
+}
+
+// Tabs principales
 function AppTabs() {
   return (
     <Tab.Navigator 
@@ -49,14 +61,14 @@ function AppTabs() {
       />
       <Tab.Screen
         name="Dashboard"
-        component={Dashboard}
+        component={DashboardStackScreen}
         options={{
           tabBarIcon: ({ color, size }) => <MaterialIcons name="bar-chart" size={size} color={color} />,
         }}
       />
       <Tab.Screen
         name="Challenges"
-        component={Dashboard}
+        component={Challenges}
         options={{
           tabBarIcon: ({ color, size }) => (
             <MaterialIcons name="emoji-events" size={size} color={color} />
@@ -74,6 +86,7 @@ function AppTabs() {
   );
 }
 
+// App principale
 export default function App() {
   const { isLoggedIn, hydrated, loadAuthState } = useAuthStore();
 
@@ -100,7 +113,6 @@ export default function App() {
         ) : (
         <>
             <Stack.Screen name="AppTabs" component={AppTabs} />
-            <Stack.Screen name="Questionnaire" component={Questionnaire} />
         </>
         )}
       </Stack.Navigator>
