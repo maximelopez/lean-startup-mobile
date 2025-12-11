@@ -15,6 +15,16 @@ import Questionnaire from './screens/Questionnaire';
 import Challenges from './screens/Challenges';
 import Profile from './screens/Profile';
 
+// Redux
+import { Provider } from 'react-redux';
+import { configureStore } from '@reduxjs/toolkit';
+import user from './reducers/user';
+
+const store = configureStore({
+ reducer: { user },
+});
+
+// Navigation
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 const DashboardStack = createNativeStackNavigator();
@@ -86,24 +96,24 @@ function AppTabs() {
 
 // App principale
 export default function App() {
-  //const { isLoggedIn, hydrated, loadAuthState } = useAuthStore();
   const isLoggedIn = true 
-
   
   return (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {!isLoggedIn ? (
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          {!isLoggedIn ? (
+            <>
+              <Stack.Screen name="Login" component={Login} />
+              <Stack.Screen name="Signup" component={Signup} />
+            </>
+          ) : (
           <>
-            <Stack.Screen name="Login" component={Login} />
-            <Stack.Screen name="Signup" component={Signup} />
+              <Stack.Screen name="AppTabs" component={AppTabs} />
           </>
-        ) : (
-        <>
-            <Stack.Screen name="AppTabs" component={AppTabs} />
-        </>
-        )}
-      </Stack.Navigator>
-    </NavigationContainer>
+          )}
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
