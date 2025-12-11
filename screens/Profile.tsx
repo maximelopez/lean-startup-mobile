@@ -69,23 +69,31 @@ export default function Profile() {
 </View>
 
 
-          <View className="w-full px-4 mt-4 mb-8">
+         <View className="w-full px-4 mt-4 mb-8">
 
             {/* Titre */}
-            <Text className="text-3xl font-black mb-8 mt-4">
+            <Text 
+              style={{ fontFamily: "Peachy" }}
+              className="text-[32px] mb-8 mt-4">
               Mes thématiques
             </Text>
 
             {/* Ligne 1 */}
             <View className="flex-row gap-4 mb-4">
-              <View className="flex-1 border-2 border-purple-600 rounded-3xl p-6 justify-center items-center">
-                <Text className="text-purple-600 text-lg font-medium">
+              <View 
+                className="flex-1 h-[30px] rounded-full px-3 justify-center items-center"
+                style={{ backgroundColor: "#E6582F" }}
+              >
+                <Text className="text-white text-[12px] font-medium">
                   Cuisine & Nutrition
                 </Text>
               </View>
 
-              <View className="flex-1 border-2 border-purple-600 rounded-3xl p-6 justify-center items-center">
-                <Text className="text-purple-600 text-lg font-medium">
+              <View 
+                className="flex-1 h-[30px] rounded-full px-3 justify-center items-center"
+                style={{ backgroundColor: "#FFF45E" }}
+              >
+                <Text className="text-black text-[12px] font-medium">
                   Sport & Activités
                 </Text>
               </View>
@@ -93,31 +101,53 @@ export default function Profile() {
 
             {/* Ligne 2 */}
             <View className="flex-row gap-4 mb-4">
-              <View className="flex-1 border-2 border-purple-600 rounded-3xl p-6 justify-center items-center">
-                <Text className="text-purple-600 text-lg font-medium">
+              <View 
+                className="flex-1 h-[30px] rounded-full px-3 justify-center items-center"
+                style={{ backgroundColor: "#6F28D9" }}
+              >
+                <Text className="text-white text-[12px] font-medium">
                   Lecture & Culture
                 </Text>
               </View>
 
-              <View className="flex-1 border-2 border-purple-600 rounded-3xl p-6 justify-center items-center">
-                <Text className="text-purple-600 text-lg font-medium">
+              <View 
+                className="flex-1 h-[30px] rounded-full px-3 justify-center items-center"
+                style={{ backgroundColor: "#5EA1F2" }}
+              >
+                <Text className="text-white text-[12px] font-medium">
                   Vie sociale
                 </Text>
               </View>
             </View>
 
-  {/* Ligne 3 (pleine largeur) */}
-  <View className="border-2 border-purple-600 rounded-3xl p-6 justify-center items-center">
-    <Text className="text-purple-600 text-lg font-medium">
-      Développement personnel
-    </Text>
-  </View>
+            {/* Ligne 3 */}
+            <View 
+              className="h-[30px] rounded-full px-3 justify-center items-center"
+              style={{ backgroundColor: "#FFF45E" }}
+            >
+              <Text className="text-black text-[12px] font-medium">
+                Développement personnel
+              </Text>
+            </View>
 
-</View>
+          </View>
+
+          <View className="w-full items-center">
+
+                    
+          <View 
+            className="w-[30px] h-[30px] rounded-full justify-center items-center mb-10"
+            style={{ backgroundColor: "#6F28D9" }}
+          >
+            <Text className="text-white text-[16px] font-bold">
+              +
+            </Text>
+          </View>
+        </View>
 
           <TouchableOpacity
               onPress={() => dispatch(logout())}
-              className="w-full py-3 rounded-xl bg-white mb-4"
+              className="w-full py-3 rounded-xl bg-white mb-4 mt-4"
               style={{ borderWidth: 2, borderColor: "#00000", backgroundColor: "#6B21A8" }}
               activeOpacity={0.8}
               >
@@ -137,7 +167,7 @@ export default function Profile() {
               >
               <Text
                 className="font-semibold text-center text-lg"
-                style={{ color: "#6B21A8",fontFamily: "Peachy" }}
+                style={{ color: "#6B21A8",fontFamily: "Peachy", }}
               >
                 Se déconnecter
               </Text>
