@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
-import { Alert, FlatList, KeyboardAvoidingView, Platform, SafeAreaView, Text, TextInput, TouchableOpacity, View, useWindowDimensions } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { FlatList, KeyboardAvoidingView, Platform, Text, TextInput, TouchableOpacity, View, useWindowDimensions } from 'react-native';
 import RatingQuestion from '../components/RatingQuestion';
 import Constants from "expo-constants";
 import { useSelector, useDispatch } from 'react-redux';
@@ -44,12 +45,7 @@ export default function Questionnaire({ navigation }: any) {
 
     // Soumission du questionnaire + calcul du score
     const handleSubmit = () => {
-        if (
-            !energie || !stress || !sommeil || !motivation ||
-            !alimentation || !concentration ||
-            !humeur || !douleur || !tempsExterieur
-        ) {
-            Alert.alert("Oups !", "Il manque quelques réponses pour valider.");
+        if (!energie || !stress || !sommeil || !motivation || !alimentation || !concentration || !humeur || !douleur || !tempsExterieur) {   
             return;
         }
 
