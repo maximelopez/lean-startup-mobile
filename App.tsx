@@ -1,10 +1,8 @@
-import { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialIcons } from '@expo/vector-icons';
-import { View, ActivityIndicator } from 'react-native';
-import "./global.css"
+import "./assets/styles/global.css";
 
 import Login from './screens/Login';
 import Signup from './screens/Signup';
@@ -16,7 +14,7 @@ import Challenges from './screens/Challenges';
 import Profile from './screens/Profile';
 
 // Redux
-import { Provider } from 'react-redux';
+import { Provider, useSelector } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import user from './reducers/user';
 
@@ -94,25 +92,31 @@ function AppTabs() {
   );
 }
 
+// Composant principal qui lit le state Redux
+function MainNavigator() {
+  const user = useSelector((state: any) => state.user);
+  const isLoggedIn = user.loggedIn;
+
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      {!isLoggedIn ? (
+        <>
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Signup" component={Signup} />
+        </>
+      ) : (
+        <Stack.Screen name="AppTabs" component={AppTabs} />
+      )}
+    </Stack.Navigator>
+  );
+}
+
 // App principale
 export default function App() {
-  const isLoggedIn = true 
-  
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
-          {!isLoggedIn ? (
-            <>
-              <Stack.Screen name="Login" component={Login} />
-              <Stack.Screen name="Signup" component={Signup} />
-            </>
-          ) : (
-          <>
-              <Stack.Screen name="AppTabs" component={AppTabs} />
-          </>
-          )}
-        </Stack.Navigator>
+        <MainNavigator />
       </NavigationContainer>
     </Provider>
   );

@@ -2,9 +2,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
- name: '',
- email: '',
- score: 0,
+    user: {
+        name: '',
+        email: '',
+        score: 0,
+    },
+    loggedIn: false,
 };
 
 export const userSlice = createSlice({
@@ -13,22 +16,19 @@ export const userSlice = createSlice({
     reducers: {
         // Connecter l'utilisateur
         login: (state, action) => {
-            const { name, email, score } = action.payload;
-            state.name = name;
-            state.email = email;
-            state.score = score;
+            state.user = { ...action.payload };
+            state.loggedIn = true;
         },
 
         // Déconnecter l'utilisateur
-            logout: (state) => {
-            state.name = '';
-            state.email = '';
-            state.score = 0;
+        logout: (state) => {
+            state.user = { name: '', email: '', score: 0 };
+            state.loggedIn = false;
         },
 
         // Mettre à jour uniquement le score
         setScore: (state, action) => {
-            state.score = action.payload; // action.payload = nouveau score
+           state.user = { ...state.user, ...action.payload };
         },
     }
 });

@@ -1,10 +1,13 @@
 import { useState } from 'react';
-//import { useAuthStore } from '../store/useAuthStore';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import Button from '../components/Button';
 import Input from '../components/Input';
 import Constants from "expo-constants";
 import logo from '../assets/images/tribu-logo.png';
+
+// Redux
+import { useDispatch } from 'react-redux';
+import { login } from '@/reducers/user';
 
 type Props = {
   navigation: any;
@@ -15,15 +18,15 @@ const API_URL = Constants.expoConfig?.extra?.API_URL;
 if (!API_URL) console.warn("API_URL is missing in app.config.js or .env");
 
 export default function Login({ navigation }: Props) {
-  const [email, setEmail] = useState<string>('');
+  const [emailInput, setEmailInput] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(false);
 
-  //const { login } = useAuthStore();
+  const dispatch = useDispatch();
 
   const handleLogin = async () => {
-    if (! email || !password) {
+    if (! emailInput || !password) {
       setErrorMessage('Veuillez remplir tous les champs.');
       return;
     }
@@ -37,12 +40,15 @@ export default function Login({ navigation }: Props) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email: emailInput, password }),
       });
 
       if (response.ok) {
         const data = await response.json();
-        //login(data.user, data.token);
+
+        // Dispatch pour stocker l'utilisateur connecté
+        const { name, email, score } = data.user;
+        dispatch(login({ name, email, score }));
       }
 
     } catch (error: any) {
@@ -61,8 +67,8 @@ export default function Login({ navigation }: Props) {
         <Text className="text-gray-500 mb-9">Saisissez vos informations ci-dessous</Text>
         <View className='w-full gap-[20px] mb-[20px]'>
           <Input
-            value={email}
-            onChangeText={setEmail}
+            value={emailInput}
+            onChangeText={setEmailInput}
             placeholder="Adresse mail"
             keyboardType="email-address"
           />
