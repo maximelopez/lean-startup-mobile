@@ -2,11 +2,15 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { View, Text, ScrollView, Image } from 'react-native';
 import ScoreCard from '@/components/ScoreCard';
 import DonutProgress from '../components/DonutProgress';
+import { useSelector } from 'react-redux';
 import icon1 from '../assets/icons/dashboard-icon1.png';
 import icon2 from '../assets/icons/dashboard-icon2.png';
 import icon3 from '../assets/icons/dashboard-icon3.png';
 
 export default function Score() {
+    const userState = useSelector((state: any) => state.user);
+    const { score } = userState.user;
+
     return (
         <SafeAreaView className="flex-1 bg-white" edges={['top']}>
             <ScrollView>
@@ -15,10 +19,10 @@ export default function Score() {
                     <Text className="text-center text-[32px] font-bold mt-4 mb-4">
                         Ton score bien-être
                     </Text>
-                    <Text className='text-center text-gray-500 text-[12px]'>
+                    <Text className='text-center text-gray-500 text-[12px] mb-10'>
                         Les scores sont calculés à partir de tes activités et ressentis. Tu peux les ajuster dans ton profil.
                     </Text>
-                    <DonutProgress score={78} progress={0.35} />
+                    <DonutProgress score={score} progress={score / 100} />
                 </View>
                 <View className="mx-6">
                     <Text className="text-center text-[32px] font-bold mt-4 mb-4">
