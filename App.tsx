@@ -74,7 +74,7 @@ function AppTabs() {
         name="Profil"
         component={Profile}
         options={{
-          tabBarIcon: ({ color, size }) => <MaterialIcons name="person" size={size} color={color} />,
+          tabBarIcon: ({ color, size }) => <MaterialIcons name="account-circle" size={size} color={color} />,
         }}
       />
     </Tab.Navigator>
