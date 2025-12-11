@@ -24,7 +24,7 @@ export default function ChallengeCard({
     <View className="w-full bg-white border border-purple-300 rounded-3xl p-5 mb-6">
 
       {/* Titre */}
-      <Text className="text-[22px] font-bold mb-4">
+      <Text style={{ fontFamily: "Peachy" }} className="text-[22px] mb-4">
         {title}
       </Text>
 
@@ -51,7 +51,7 @@ export default function ChallengeCard({
         <View className="ml-4">
           <Text className="text-[20px] font-semibold">
             {percentage}%
-            <Text className="text-gray-500 text-[16px] ml-2">   {status}</Text>
+            <Text  className="text-gray-500 text-[16px] ml-2">   {status}</Text>
           </Text>
         </View>
       </View>
