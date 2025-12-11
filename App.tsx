@@ -52,6 +52,15 @@ function AppTabs() {
         }}
       />
       <Tab.Screen
+        name="Challenges"
+        component={Dashboard}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <MaterialIcons name="emoji-events" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
         name="Profil"
         component={Profile}
         options={{
