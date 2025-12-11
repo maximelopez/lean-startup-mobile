@@ -24,7 +24,7 @@ export default function Home() {
           </View>
           
           <View>
-            <Text className="text-[28px] font-bold text-gray-900 mb-2">
+            <Text  style={{ fontFamily: "Peachy" }} className="text-[28px] text-gray-900 mb-2">
             Bonjour, {name}
           </Text>
 
@@ -39,7 +39,7 @@ export default function Home() {
 
         {/* Mes défis */}
         <View className="px-6 mb-4">
-          <Text className="text-[24px] font-bold text-gray-900 text-center">
+          <Text style={{ fontFamily: "Peachy" }} className="text-[24px] text-gray-900 text-center">
             Mes défis
           </Text>
         </View>
@@ -47,6 +47,7 @@ export default function Home() {
         <View className="px-6">
 
           <ChallengeCard
+          
             title="Écrire un journal"
             progress={1}
             status="Terminé"
