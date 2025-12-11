@@ -15,8 +15,6 @@ import Questionnaire from './screens/Questionnaire';
 import Challenges from './screens/Challenges';
 import Profile from './screens/Profile';
 
-import { useAuthStore } from './store/useAuthStore';
-
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 const DashboardStack = createNativeStackNavigator();
@@ -88,20 +86,10 @@ function AppTabs() {
 
 // App principale
 export default function App() {
-  const { isLoggedIn, hydrated, loadAuthState } = useAuthStore();
+  //const { isLoggedIn, hydrated, loadAuthState } = useAuthStore();
+  const isLoggedIn = true 
 
-  useEffect(() => {
-    loadAuthState();
-  }, []);
-
-  if (!hydrated) {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator size="large" color="#6C0FF2" />
-      </View>
-    );
-  }
-
+  
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>

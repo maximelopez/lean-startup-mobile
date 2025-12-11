@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useAuthStore } from '../store/useAuthStore';
+//import { useAuthStore } from '../store/useAuthStore';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import Button from '../components/Button';
 import Input from '../components/Input';
@@ -20,7 +20,7 @@ export default function Login({ navigation }: Props) {
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const { login } = useAuthStore();
+  //const { login } = useAuthStore();
 
   const handleLogin = async () => {
     if (! email || !password) {
@@ -42,7 +42,7 @@ export default function Login({ navigation }: Props) {
 
       if (response.ok) {
         const data = await response.json();
-        login(data.user, data.token);
+        //login(data.user, data.token);
       }
 
     } catch (error: any) {

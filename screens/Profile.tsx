@@ -1,11 +1,11 @@
 import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
-import { useAuthStore } from '../store/useAuthStore';
+//import { useAuthStore } from '../store/useAuthStore';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 export default function Profile() {
-  const user = useAuthStore(state => state.user);
-  const logout = useAuthStore(state => state.logout);
+  //const user = useAuthStore(state => state.user);
+  //const logout = useAuthStore(state => state.logout);
 
   return (
     <SafeAreaView className="flex-1 bg-white" edges={['top']}>
@@ -28,11 +28,11 @@ export default function Profile() {
           />
 
           <Text className="text-2xl font-bold text-gray-900 mb-2">
-            {user?.name || "Invité"}
+            {/* {user?.name || "Invité"} */}
           </Text>
 
           <Text className="text-gray-600 text-lg mb-4">
-            {user?.email || ""}
+            {/* {user?.email || ""} */}
           </Text>
           
 
@@ -156,7 +156,7 @@ export default function Profile() {
 
 
           <TouchableOpacity
-              onPress={() => logout()}
+              // onPress={() => logout()}
               className="w-full py-3 rounded-xl bg-white"
               style={{ borderWidth: 2, borderColor: "#6B21A8" }}
               activeOpacity={0.8}
