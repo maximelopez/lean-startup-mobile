@@ -1,24 +1,20 @@
 import React, { useEffect } from 'react';
 import { View, Text } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
-import Animated, {
-  useSharedValue,
-  withTiming,
-  useAnimatedProps,
-} from 'react-native-reanimated';
+import Animated, { useSharedValue, withTiming, useAnimatedProps } from 'react-native-reanimated';
 
 interface DonutProgressProps {
-  size?: number;
-  thickness?: number;
+  size: number;
+  thickness: number;
   progress: number;
-  score?: number;
+  score: number;
   activities?: boolean;
 }
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
 export default function DonutProgress({
-  size = 200,
+  size,
   thickness = 30,
   progress,
   score,
