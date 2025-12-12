@@ -23,7 +23,7 @@ export default function Profile() {
           />
           <Text className="text-2xl font-bold text-gray-900 mb-2">{name}</Text>
           <Text className="text-gray-600 text-lg mb-4">{email}</Text>
-          <Text style={{ fontFamily: "Peachy" }} className="text-[32px] text-gray-900 text-center mb-4"> Mes statistiques</Text>
+          <Text className="text-[32px] text-gray-900 font-peachy text-center mb-4"> Mes statistiques</Text>
           
           <View className="w-full flex-row justify-between">
 
@@ -73,8 +73,7 @@ export default function Profile() {
 
             {/* Titre */}
             <Text 
-              style={{ fontFamily: "Peachy" }}
-              className="text-[32px] mb-8 mt-4">
+              className="text-[32px] font-peachy mb-8 mt-4">
               Mes thématiques
             </Text>
 
