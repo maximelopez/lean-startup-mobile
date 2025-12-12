@@ -1,12 +1,5 @@
 import React from 'react';
-import { Image, ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-<<<<<<< Updated upstream
-import { useSelector } from 'react-redux';
-import logo from '../assets/images/tribu-home.png';
-import ChallengeCard from "../components/ChallengeCard";
-import DonutProgress from '../components/DonutProgress';
-=======
 import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native';
 import DonutProgress from '../components/DonutProgress';
 import ChallengeCard from "../components/ChallengeCard";
@@ -15,7 +8,6 @@ import { useSelector } from 'react-redux';
 import logo from '../assets/images/tribu-home.png';
 import defi1 from '../assets/images/defi1.png'
 import defi2 from '../assets/images/defi2.png'
->>>>>>> Stashed changes
 
 export default function Home() {
   const {name, score } = useSelector((state: any) => state.user.user);
