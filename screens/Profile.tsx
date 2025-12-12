@@ -18,9 +18,10 @@ export default function Profile() {
       >
         <View className="flex-2 items-center pt-20 px-6">
           <Image
-            source={{ uri: "https://avatar.iran.liara.run/public/boy?seed=12" }}
+            source={require('../assets/images/profile/boy.png')}
             className="w-32 h-32 rounded-full mb-5"
           />
+
           <Text className="text-2xl font-bold text-gray-900 mb-2">{name}</Text>
           <Text className="text-gray-600 text-lg mb-4">{email}</Text>
           <Text className="text-[32px] text-gray-900 font-peachy text-center mb-4"> Mes statistiques</Text>
