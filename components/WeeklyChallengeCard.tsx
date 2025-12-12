@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { shadows } from "../utils/shadows";
 
 export default function WeeklyChallengeCard({ title, image, width, height }: any) {
@@ -10,8 +10,8 @@ export default function WeeklyChallengeCard({ title, image, width, height }: any
             <View className='flex w-full items-center'>
                 <Image source={image} style={{ width: width, height: height }} />
             </View>      
-            <Text className='font-bold text-[20px]'>{title}</Text>
-            <Text>Lorem ipsum dolor sit amet</Text>
+            <Text className='font-peachy text-[20px]'>{title}</Text>
+            <Text className='font-outfit text-[16px] mb-2'>Lorem ipsum dolor sit amet</Text>
             <View className='flex-row justify-between'>
                 <View>
                     <Text className='text-[#757575] text-[10px]'>12 familles</Text>
