@@ -30,7 +30,7 @@ export default function Score() {
                     <View className='flex-row gap-4'>
                         <DonutProgress score={score} progress={score / 100} size={150} thickness={25} />
                         <View className='mt-4'>
-                            <Text className='font-bold mb-2'>Ce qui t’a fait du bien :</Text>
+                            <Text className='font-peachy mb-2'>Ce qui t’a fait du bien :</Text>
                             <Text className='mb-2'>🍳 Cuisine → +8 pts</Text>
                             <Text className='mb-2'>🚶‍ Balade en famille → +10 pts</Text>
                             <Text className='mb-2'>📚 Lecture → +6 pts</Text>

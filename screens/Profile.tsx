@@ -1,7 +1,7 @@
-import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '@/reducers/user';
+import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function Profile() {
   const userState = useSelector((state: any) => state.user);
@@ -136,7 +136,7 @@ export default function Profile() {
               className="w-full h-[56px] rounded-[12px] bg-[#6C0FF2] items-center justify-center mb-[16px]"
               activeOpacity={0.8}
               >
-              <Text className="font-bold text-center text-[20px] text-white">
+              <Text className="font-peachy text-center text-[20px] text-white">
                 Devenir premium
               </Text>
           </TouchableOpacity>
@@ -147,7 +147,7 @@ export default function Profile() {
               activeOpacity={0.8}
               >
               <Text
-                className="font-bold text-center text-[20px] text-[#6C0FF2]">
+                className="font-peachy text-center text-[20px] text-[#6C0FF2]">
                 Se déconnecter
               </Text>
           </TouchableOpacity>
