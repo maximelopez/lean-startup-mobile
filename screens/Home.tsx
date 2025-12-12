@@ -69,7 +69,7 @@ export default function Home() {
         </View>
 
         <View className="px-6 mb-4">
-          <Text style={{ fontFamily: "Peachy" }} className="text-[28px] font-bold text-center">
+          <Text className="text-[28px] text-center font-peachy">
             Défis hébdomadaires
           </Text>
         </View>

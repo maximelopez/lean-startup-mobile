@@ -107,8 +107,8 @@ function MainNavigator() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       {!isLoggedIn ? (
         <>
-          <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Signup" component={Signup} />
+          <Stack.Screen name="Login" component={Login} />
         </>
       ) : !hasCompletedQuestionnaire ?(
         <Stack.Screen name="Questionnaire" component={Questionnaire} />
