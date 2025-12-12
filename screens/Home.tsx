@@ -1,16 +1,27 @@
 import React from 'react';
 import { Image, ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+<<<<<<< Updated upstream
 import { useSelector } from 'react-redux';
 import logo from '../assets/images/tribu-home.png';
 import ChallengeCard from "../components/ChallengeCard";
 import DonutProgress from '../components/DonutProgress';
+=======
+import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native';
+import DonutProgress from '../components/DonutProgress';
+import ChallengeCard from "../components/ChallengeCard";
+import WeeklyChallengeCard from '@/components/WeeklyChallengeCard';
+import { useSelector } from 'react-redux';
+import logo from '../assets/images/tribu-home.png';
+import defi1 from '../assets/images/defi1.png'
+import defi2 from '../assets/images/defi2.png'
+>>>>>>> Stashed changes
 
 export default function Home() {
   const {name, score } = useSelector((state: any) => state.user.user);
 
   return (
-    <SafeAreaView className="flex-1 bg-black" edges={['top']}>
+    <SafeAreaView className="flex-1" edges={['top']}>
       <ScrollView
         className="flex-1 bg-[#F7F6F3]"
         showsVerticalScrollIndicator={false}
@@ -32,10 +43,8 @@ export default function Home() {
           </View> 
         </View>
 
-        {/* Donut */}
         <DonutProgress score={score} progress={score / 100} size={200} thickness={35} />
 
-        {/* Mes défis */}
         <View className="px-6 mb-4">
           <Text className="text-[28px] font-peachy text-center">
             Mes défis
@@ -65,7 +74,17 @@ export default function Home() {
             status="En cours…"
             color="#6C0FF2"
           />
+        </View>
 
+        <View className="px-6 mb-4">
+          <Text style={{ fontFamily: "Peachy" }} className="text-[28px] font-bold text-center">
+            Défis hébdomadaires
+          </Text>
+        </View>
+
+        <View className="flex-row gap-4 justify-center">
+          <WeeklyChallengeCard title="Jeu de société" image={defi1} width={108} height={89} />
+          <WeeklyChallengeCard title="Randonnée en famille" image={defi2}  width={93} height={77} />
         </View>
 
       </ScrollView>
