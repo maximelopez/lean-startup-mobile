@@ -7,6 +7,7 @@ module.exports = {
     extend: {
       fontFamily: {
         peachy: ['peachy-keen'],
+        outfit: ['outfit'],
       },
     },
   },

@@ -1,4 +1,4 @@
-import { View, Text, Image } from 'react-native';
+import { Image, Text, View } from 'react-native';
 import { shadows } from "../utils/shadows";
 
 export default function ScoreCard({ name, role, avatar }: any) {

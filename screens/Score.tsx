@@ -1,12 +1,12 @@
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { View, Text, ScrollView, Image } from 'react-native';
 import ScoreCard from '@/components/ScoreCard';
-import DonutProgress from '../components/DonutProgress';
+import { Image, ScrollView, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useSelector } from 'react-redux';
-import { shadows } from "../utils/shadows";
 import icon1 from '../assets/icons/dashboard-icon1.png';
 import icon2 from '../assets/icons/dashboard-icon2.png';
 import icon3 from '../assets/icons/dashboard-icon3.png';
+import DonutProgress from '../components/DonutProgress';
+import { shadows } from "../utils/shadows";
 
 export default function Score() {
     const userState = useSelector((state: any) => state.user);
@@ -21,10 +21,10 @@ export default function Score() {
             >
 
                 <View className='mx-4'>
-                    <Text className="text-center text-[32px] font-bold mt-4 mb-4">
+                    <Text className="text-center text-[32px] font-peachy mt-4 mb-4">
                         Ton score bien-être
                     </Text>
-                    <Text className='text-center text-gray-500 text-[12px] mb-10'>
+                    <Text className='text-center font-outfit text-[12px] mb-10'>
                         Les scores sont calculés à partir de tes activités et ressentis. Tu peux les ajuster dans ton profil.
                     </Text>
                     <View className='flex-row gap-4'>
@@ -40,7 +40,7 @@ export default function Score() {
                 </View>
 
                 <View className="mx-6">
-                    <Text className="text-center text-[32px] font-bold mb-4">
+                    <Text className="text-center text-[32px] font-peachy mb-4">
                         Tableau de bord
                     </Text>
                     <Text className=" font-bold mb-4">

@@ -24,6 +24,7 @@ import user from './reducers/user';
 // Fonts
 import { useFonts } from 'expo-font';
 
+
 const reducers = combineReducers({ user });
 
 const persistConfig = {
@@ -124,6 +125,7 @@ export default function App() {
 
 const [fontsLoaded] = useFonts({
     'peachy-keen': require('./assets/fonts/peachy-keen-jf.otf'),
+    'outfit': require('./assets/fonts/Outfit-VariableFont_wght.ttf'),
   });
 
   return (
