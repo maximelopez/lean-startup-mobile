@@ -10,7 +10,7 @@ export default function Profile() {
   const dispatch = useDispatch();
 
   return (
-    <SafeAreaView className="flex-1 bg-black" edges={['top']}>
+    <SafeAreaView className="flex-1" edges={['top']}>
       <ScrollView 
           className="flex-1 bg-[#F7F6F3]"
           showsVerticalScrollIndicator={false}
