@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native';
+import { Text, View } from 'react-native';
 import { shadows } from "../utils/shadows";
 
 interface ChallengeCardProps {
@@ -22,7 +22,7 @@ export default function ChallengeCard({
   return (
     <View>
       <View className="w-full bg-white rounded-[15px] p-5 mb-6" style={shadows.custom}>
-        <Text style={{ fontFamily: "Peachy" }} className="text-[2Opx] font-bold mb-4">
+        <Text className="text-[2Opx] font-peachy mb-4">
           {title}
         </Text>
 

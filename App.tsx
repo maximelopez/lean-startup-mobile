@@ -1,28 +1,30 @@
+import { MaterialIcons } from '@expo/vector-icons';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { MaterialIcons } from '@expo/vector-icons';
 import "./assets/styles/global.css";
 
-import Login from './screens/Login';
-import Signup from './screens/Signup';
-import Home from './screens/Home';
-import Score from './screens/Score';
-import Dashboard from './screens/Dashboard';
-import Questionnaire from './screens/Questionnaire';
 import Challenges from './screens/Challenges';
+import Dashboard from './screens/Dashboard';
+import Home from './screens/Home';
+import Login from './screens/Login';
 import Profile from './screens/Profile';
+import Questionnaire from './screens/Questionnaire';
+import Score from './screens/Score';
+import Signup from './screens/Signup';
 
 // Redux
-import { Provider, useSelector } from 'react-redux';
-import { configureStore, combineReducers  } from '@reduxjs/toolkit';
-import { persistStore, persistReducer } from 'redux-persist';
-import { PersistGate } from 'redux-persist/integration/react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { Provider, useSelector } from 'react-redux';
+import { persistReducer, persistStore } from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react';
 import user from './reducers/user';
-import family from './reducers/family';
 
-const reducers = combineReducers({ user, family });
+// Fonts
+import { useFonts } from 'expo-font';
+
+const reducers = combineReducers({ user });
 
 const persistConfig = {
   key: 'tribu',
@@ -119,6 +121,11 @@ function MainNavigator() {
 
 // App principale
 export default function App() {
+
+const [fontsLoaded] = useFonts({
+    'peachy-keen': require('./assets/fonts/peachy-keen-jf.otf'),
+  });
+
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>

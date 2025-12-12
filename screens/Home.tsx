@@ -1,10 +1,10 @@
 import React from 'react';
+import { Image, ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { View, Text, ScrollView, Image } from 'react-native';
-import DonutProgress from '../components/DonutProgress';
-import ChallengeCard from "../components/ChallengeCard";
 import { useSelector } from 'react-redux';
 import logo from '../assets/images/tribu-home.png';
+import ChallengeCard from "../components/ChallengeCard";
+import DonutProgress from '../components/DonutProgress';
 
 export default function Home() {
   const {name, score } = useSelector((state: any) => state.user.user);
@@ -22,7 +22,7 @@ export default function Home() {
           </View>
           
           <View>
-            <Text  style={{ fontFamily: "Peachy" }} className="text-[28px] font-bold mb-2">
+            <Text className="text-[28px] font-peachy  @ mb-2">
             Bonjour, {name}
           </Text>
 
@@ -37,12 +37,12 @@ export default function Home() {
 
         {/* Mes défis */}
         <View className="px-6 mb-4">
-          <Text style={{ fontFamily: "Peachy" }} className="text-[28px] font-bold text-center">
+          <Text className="text-[28px] font-peachy text-center">
             Mes défis
           </Text>
         </View>
 
-        <View className="px-6">
+        <View className="px-6 font-peachy ">
 
           <ChallengeCard
             title="Écrire un journal"
